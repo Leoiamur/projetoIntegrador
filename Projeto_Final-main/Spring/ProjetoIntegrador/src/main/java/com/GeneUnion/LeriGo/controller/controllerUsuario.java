@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.GeneUnion.LeriGo.UsuarioService;
+import com.GeneUnion.LeriGo.model.UsuarioLogin;
 import com.GeneUnion.LeriGo.model.modelUsuario;
 import com.GeneUnion.LeriGo.repository.repositoryUsuario;
 
@@ -24,6 +26,9 @@ public class controllerUsuario {
 
 	@Autowired
 	private repositoryUsuario repository;
+	
+	@Autowired
+	private UsuarioService usuarioService;
 	
 	@GetMapping
 	public List<modelUsuario> buscarTodos(){
@@ -55,5 +60,14 @@ public class controllerUsuario {
 		repository.deleteById(id);
 	}
 
+	@PostMapping("/logar")
+	public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user){
+		return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
+	
+	@PostMapping("/cadastrar")
+	public ResponseEntity<modelUsuario> Post(@RequestBody modelUsuario usuario){
+		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.CadastrarUsuario(usuario));
+	}
 	
 }
