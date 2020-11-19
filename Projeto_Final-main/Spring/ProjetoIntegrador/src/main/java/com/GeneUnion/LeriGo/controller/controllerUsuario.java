@@ -67,7 +67,16 @@ public class controllerUsuario {
 	
 	@PostMapping("/cadastrar")
 	public ResponseEntity<modelUsuario> Post(@RequestBody modelUsuario usuario){
-		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.CadastrarUsuario(usuario));
+		Optional<modelUsuario> user = usuarioService.CadastrarUsuario(usuario);
+
+		try {
+			return ResponseEntity.ok(user.get());
+	} catch (Exception e) {
+		return ResponseEntity.badRequest().build();
+	}
+
+//		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.CadastrarUsuario(usuario));
+	
 	}
 	
 }
