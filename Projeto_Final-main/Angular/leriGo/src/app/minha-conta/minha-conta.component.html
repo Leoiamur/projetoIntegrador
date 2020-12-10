@@ -1,0 +1,183 @@
+<div class="container mt-5 mb-5">
+    <div class="row">
+
+        <div class="col-md-4">
+            <app-perfil-lateral></app-perfil-lateral>
+        </div>
+
+
+
+        <div class="col-md-8 fundo d-flex justify-content-center w-100 border border-dark rounded ">
+
+            <div class="row ">
+                <div class="col-md-12 d-flex justify-content-center mt-3 mb-3">
+                    <h1>Inserir Anuncio</h1>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Nome do produto</label>
+                            <input type="text" class="form-control" id="nomeProduto" placeholder="Ex: Blusa de frio"
+                                [(ngModel)]="produto.nome" [ngModelOptions]="{standalone: true}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Quantidade</label>
+                            <input type="number" class="form-control" id="nomeProduto" placeholder="Ex: 1"
+                                [(ngModel)]="produto.quantidade" [ngModelOptions]="{standalone: true}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Valor</label>
+                            <input type="number" class="form-control" id="nomeProduto" placeholder="Ex: 100" default="0"
+                                [(ngModel)]="produto.preco" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="col-md-12 d-flex justify-content-start mb-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" for="inlineCheckbox1">Doação</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Foto do produto</label>
+                            <input type="text" class="form-control" id="nomeProduto" [(ngModel)]="produto.foto"
+                                [ngModelOptions]="{standalone: true}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Tamanho do produto</label>
+                            <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="produto.tamanho"
+                                [ngModelOptions]="{standalone: true}">
+                                <option>P</option>
+                                <option>M</option>
+                                <option>G</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Tipo de peça</label>
+                            <select class="form-control" id="exampleFormControlSelect1"
+                                [(ngModel)]="categoria.idCategoria" [ngModelOptions]="{standalone: true}">
+                                <option>1</option>
+                                <option>Calçado</option>
+                                <option>Acessorio</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 d-flex justify-content-end">
+                                <div class="form-check">
+
+                                    <label class="form-check-label  mr-4" for="exampleRadios1">
+                                        Masculino
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios1" value="option1" checked>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios2" value="option2">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Feminino
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 mt-3 d-flex justify-content-center">
+                                <div class="w-50 d-flex justify-content-center">
+                                    <button class="btn btn-outline-success" (click)="publicarAnuncio()">Enviar
+                                        dados</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 fundo d-flex justify-content-center w-100 border border-dark rounded mt-5">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center mt-4 mb-4">
+                    <h1>Meus Anuncios</h1>
+                </div>
+                <div class="col-md-4 mb-5 d-flex justify-content-center" *ngFor="let item of listaProduto">
+
+                    
+                    <div class="card d-flex justify-content-center" style="width: 18rem;" >
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.nome}}</h5>
+                        </div>
+                    
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTQY0VqzKQbyEDd-i_AgichfPdMMmZe8QSGQ&usqp=CAU" class="card-img-top" alt="...">
+                        
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item border border-dark">Descrição - {{item.foto}}</li>
+                          <li class="list-group-item border border-dark">Tamanho - {{item.tamanho}}</li>
+                          <li class="list-group-item border border-dark">Valor - {{item.preco}}</li>
+                          <li class="list-group-item border border-dark">Categoria - {{item.categoria.tipo}}</li>
+                        </ul>
+                        <div class="card-body">
+                          <a href="#" class="card-link">Adicionar ao carrinho</a>
+                        </div>
+                      </div>
+                    </div>
+                
+            </div>
+
+        </div>
+
+        <div class="col-md-12 fundo d-flex justify-content-center w-100 border border-dark rounded mt-5"
+            id="editarInformacoes">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <h1>Atualizar dados de Perfil</h1>
+                </div>
+                <hr>
+                <div class="col-md-12">
+                    <h3 class="text-center text-primary mb-4 fonte-letras texto"> a</h3>
+
+                    <form class="mb-5">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Titulo:</label>
+                            <input type="text" class="form-control" id="titulo" placeholder="Digite aqui o seu titulo">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Sua experiencia:</label>
+                            <textarea class="form-control" id="experiencia" rows="3"
+                                placeholder="Digite aqui a sua experiencia" name="texto"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label for="exampleFormControlSelect1">Escolha um tema ou <a> Cadastre um novo </a>
+                                    </label>
+                                    <select class="form-control" id="tema">
+                                        <option>
+
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-4 d-flex justify-content-end align-items-end">
+                                    <button type="button" class="btn btn-outline-primary w-50 h-50">Publicar</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
