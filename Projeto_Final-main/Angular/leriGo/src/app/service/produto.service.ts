@@ -20,8 +20,20 @@ export class ProdutoService {
 {
   return this.http.get<Produto[]>('http://localhost:8080/produtos', this.token)
 }
+
+getByIdProduto(id: number) : Observable<Produto>{
+  return this.http.get<Produto>(`http://localhost:8080/produtos/id.${id}`, this.token)
+  }
+
 postProduto(produto: Produto) : Observable<Produto>{
   return this.http.post<Produto>('http://localhost:8080/produtos', produto, this.token)
 }
 
+putProduto(produto: Produto) : Observable<Produto>{
+  return this.http.put<Produto>(`http://localhost:8080/produtos`, produto ,this.token)
+}
+
+deleteProduto(id: number): Observable<Produto>{
+  return this.http.delete<Produto>(`http://localhost:8080/produtos/id.${id}`,this.token)
+}
 }

@@ -26,4 +26,8 @@ export class CategoriaService {
   postCategoria(categoria: Categoria) : Observable<Categoria>{
     return this.http.post<Categoria>('htttp://localhost:8080/categoria', categoria, this.token)
   }
+
+  putCategoria(categoria: Categoria) : Observable<Categoria>{
+    return this.http.put<Categoria>('http://localhost:8080/categoria', categoria, this.token)
+  }
 }

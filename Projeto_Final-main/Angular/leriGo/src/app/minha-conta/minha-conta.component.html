@@ -107,29 +107,74 @@
                 </div>
                 <div class="col-md-4 mb-5 d-flex justify-content-center" *ngFor="let item of listaProduto">
 
-                    
-                    <div class="card d-flex justify-content-center" style="width: 18rem;" >
+
+                    <div class="card d-flex justify-content-center" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{item.nome}}</h5>
                         </div>
-                    
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTQY0VqzKQbyEDd-i_AgichfPdMMmZe8QSGQ&usqp=CAU" class="card-img-top" alt="...">
-                        
+
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTQY0VqzKQbyEDd-i_AgichfPdMMmZe8QSGQ&usqp=CAU"
+                            class="card-img-top" alt="...">
+
                         <ul class="list-group list-group-flush">
-                          <li class="list-group-item border border-dark">Descrição - {{item.foto}}</li>
-                          <li class="list-group-item border border-dark">Tamanho - {{item.tamanho}}</li>
-                          <li class="list-group-item border border-dark">Valor - {{item.preco}}</li>
-                          <li class="list-group-item border border-dark">Categoria - {{item.categoria.tipo}}</li>
+                            <li class="list-group-item border border-dark">Descrição - {{item.foto}}</li>
+                            <li class="list-group-item border border-dark">Tamanho - {{item.tamanho}}</li>
+                            <li class="list-group-item border border-dark">Valor - {{item.preco}}</li>
+                            <li class="list-group-item border border-dark">Id - {{item.idProduto}}</li>
                         </ul>
                         <div class="card-body">
-                          <a href="#" class="card-link">Adicionar ao carrinho</a>
+
+                            <button type="button" class="btn btn-outline-info w-100" [routerLink]= "['/edita-produto',item.idProduto]">Alterar Anuncio</button>
+
+                            
+
+                            <button type="button" class="btn btn-outline-danger w-100 mt-2" data-toggle="modal"
+                                data-target="#modalDelete" data-whatever="@mdo" (click)="identificarId(item.idProduto)">Deletar Anuncio</button>
+
+                                <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content bg-dark text-white">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Deletar Anuncio? de codigo: {{idProd}}
+                                                </h5>
+                                            <button type="button" class="close " data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <button class="btn btn-outline-success w-100"
+                                                    (click)="btnDelete()">
+                                                    Sim eu quero mesmo deletar!
+                                                </button>
+                                                <button type="button" class="btn btn-outline-success w-100 mt-2"
+                                                    data-dismiss="modal">
+                                                    Não eu não quero deletar!
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-dismiss="modal">Desistir de
+                                                deletar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+
                         </div>
-                      </div>
                     </div>
-                
+                </div>
+
             </div>
 
         </div>
+
+        
 
         <div class="col-md-12 fundo d-flex justify-content-center w-100 border border-dark rounded mt-5"
             id="editarInformacoes">

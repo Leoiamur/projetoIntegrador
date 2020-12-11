@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PerfilLateralComponent } from './perfil-lateral/perfil-lateral.component';
 import { MinhaContaComponent } from './minha-conta/minha-conta.component';
+import { PutComponent } from './put/put.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MinhaContaComponent } from './minha-conta/minha-conta.component';
     LoginComponent,
     CadastroComponent,
     PerfilLateralComponent,
-    MinhaContaComponent
+    MinhaContaComponent,
+    PutComponent
   ],
   imports: [
     BrowserModule,
