@@ -36,4 +36,8 @@ putProduto(produto: Produto) : Observable<Produto>{
 deleteProduto(id: number): Observable<Produto>{
   return this.http.delete<Produto>(`http://localhost:8080/produtos/id.${id}`,this.token)
 }
+
+getByNomeProduto(nome: string): Observable<Produto[]> {
+  return this.http.get<Produto[]>(`http://localhost:8080/produtos/nome.${nome}`, this.token)
+}
 }

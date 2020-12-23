@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Categoria } from '../model/categoria';
 import { Produto } from '../model/produto';
+import { AlertasService } from '../service/alertas.service';
 import { CategoriaService } from '../service/categoria.service';
+import { MidiaService } from '../service/midia.service';
 import { ProdutoService } from '../service/produto.service';
 
 @Component({
@@ -13,27 +15,41 @@ import { ProdutoService } from '../service/produto.service';
 })
 export class MinhaContaComponent implements OnInit {
 
+  public paginaAtual = 1;
   idProd!: number
   idCate!: number
   produto: Produto = new Produto()
   listaProduto!: Produto[]
   categoria: Categoria = new Categoria()
   listaCategoria!: Categoria[]
+
+
+  carrinho: Produto = new Produto()
+  listaCarrinho!: Produto[]
+
+  foto!: File
   
   constructor(
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private midiaService: MidiaService,
+    private alert: AlertasService
   ) { }
+
+  
+
 
   ngOnInit(){
     window.scroll(0,0)
 
-
     this.findAllCategorias()
     this.findAllProdutos()
   }
+
+  
+
 
   findAllProdutos(){
     this.produtoService.getAllProdutos().subscribe((resp: Produto[])=>{
@@ -53,30 +69,69 @@ export class MinhaContaComponent implements OnInit {
     })
   }
 
-  publicarAnuncio(){
-    this.categoria.idCategoria= this.idCate
+  publicarAnuncio() {
+    this.categoria.idCategoria = this.idCate
 
-    if(this.produto.nome == null || this.produto.quantidade < 1 || this.produto.preco == null || this.produto.foto == null){
-      alert('Preencha todos os campos antes de publicar')
-    } else{
-
-      this.produtoService.postProduto(this.produto).subscribe((resp: Produto)=> {
-        this.produto = resp
-        this.produto = new Produto()
-        alert('Produto anunciado com sucesso!')
-        this.findAllProdutos()
-      })
+    if (this.produto.nome == null || this.produto.quantidade < 1 || this.produto.preco == null || this.produto.foto == null) {
+      this.alert.showAlertDanger('Preencha todos os campos antes de publicar')
+    } else {
+      if (this.foto != null) {
+        this.midiaService.uploadPhoto(this.foto).subscribe((resp: any) => {
+          this.produto.foto = resp.secure_url
+          this.produtoService.postProduto(this.produto).subscribe((resp: Produto) => {
+            this.produto = resp
+            this.produto = new Produto()
+            this.alert.showAlertSuccess('Produto anunciado com sucesso!')
+            window.location.reload()
+            this.findAllProdutos()
+          })
+        })
+      } else {
+        this.produtoService.postProduto(this.produto).subscribe((resp: Produto)=> {
+          this.produto = resp
+          this.produto = new Produto()
+          this.alert.showAlertSuccess('Produto anunciado com sucesso!')
+          window.location.reload()
+          this.findAllProdutos()
+        })
+      }
     }
   }
 
   btnDelete(){
     this.produtoService.deleteProduto(this.idProd).subscribe(()=>{
       this.router.navigate(['/minhaConta'])
-      alert('Produto excluido com sucesso!')
+      this.alert.showAlertDanger('Produto excluido com sucesso!')
+      window.location.reload()
     })
   }
 
   identificarId(id: number){
     this.idProd = id
+    this.produtoService.getByIdProduto(id).subscribe((resp: Produto)=>{
+      this.produto = resp
+      })
   }
+
+  salvar(){  
+
+    this.produtoService.putProduto(this.produto).subscribe((resp: Produto)=>{
+    this.produto = resp
+    this.router.navigate(['/minhaConta'])
+    this.alert.showAlertInfo('Postagem alterada com sucesso')
+    window.location.reload()
+    }, err =>{
+      if(err.status == '500'){
+        this.alert.showAlertDanger('Preencha todos os campos corretamente antes de enviar')
+      }
+    })
+  }
+  
+  
+carregarImagemPreview(event: any) {
+  this.foto = event.target.files[0]
+  let url = URL.createObjectURL(this.foto);
+  (<HTMLImageElement>document.querySelector('img#imagem-preview'))!.src = url
+}
+
 }

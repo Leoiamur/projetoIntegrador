@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.GeneUnion.LeriGo.model.modelProdutos;
 import com.GeneUnion.LeriGo.repository.repositoryProdutos;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/produtos")
 public class controllerProdutos {
 
@@ -45,7 +47,7 @@ public class controllerProdutos {
 		return ResponseEntity.ok(repository.save(produto));
 	}
 	
-	@PutMapping("/{id}")
+	@PutMapping
 	public ResponseEntity<modelProdutos> put (@RequestBody modelProdutos produto){
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(repository.save(produto));
