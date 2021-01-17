@@ -42,6 +42,11 @@ public class controllerProdutos {
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
+	@GetMapping("/idCategoria/{idCategoria}")
+	public ResponseEntity<List<modelProdutos>> getByIdCategoria(@PathVariable Long id){
+		return ResponseEntity.ok(repository.findAllByIdCategoria(id));
+	}
+	
 	@PostMapping
 	public ResponseEntity<modelProdutos> post (@RequestBody modelProdutos produto){
 		return ResponseEntity.ok(repository.save(produto));

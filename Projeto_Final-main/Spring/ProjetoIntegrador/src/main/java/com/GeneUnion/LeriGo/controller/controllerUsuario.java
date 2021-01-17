@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +55,9 @@ public class controllerUsuario {
 	
 	@PutMapping
 	public ResponseEntity<modelUsuario> put (@RequestBody modelUsuario nome){
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String senhaEncoder = encoder.encode(nome.getSenha());
+		nome.setSenha(senhaEncoder);
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(nome));
 	}
 	

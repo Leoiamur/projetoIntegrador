@@ -1,7 +1,7 @@
 <div class="container  mt-5 mb-5">
     <div class="row mb-5">
 
-        <div class="col-md-6 border fundo-pagamento">
+        <div class="col-md-6 border ">
             <h2 class="text-center  mt-4 mb-4">Carrinho</h2>
             <div class="row mb-5" *ngFor="let item of listaProduto">
                 <div class="col-md-4 pl-5 ">
@@ -20,7 +20,7 @@
 
 
 
-        <div class="col-md-6 border fundo-carrinho">
+        <div class="col-md-6 border">
             <h2 class="text-center mt-4 mb-4">Pagamento</h2>
 
             <form>
@@ -53,10 +53,10 @@
                     </select>
                 </div>
                 <div class="d-flex justify-content-end align-self-end">
-                    <h4>Total da compra: {{total}}</h4>
+                    <h4>Total da compra: R$ 0,00</h4>
                 </div>
         <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary d-flex justify-content-center w-50">Confirmar compra</button>
+        <button type="submit" class="btn btn-primary d-flex justify-content-center w-50 mb-4">Confirmar compra</button>
         </div>
     </form>
 

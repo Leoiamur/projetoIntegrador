@@ -5,5 +5,5 @@ export class Categoria{
     public tipo!: string
     public destino!: string
     public classificacao!: string
-    public produto!: Produto[]
+    public modelProdutos!: Produto[]
 }

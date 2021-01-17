@@ -23,6 +23,7 @@ export class GetTipoComponent implements OnInit {
   nome!: string
   tipoCategoria!: string
   nomeProduto!: string
+  public paginaAtual = 1;
 
   constructor(
     private produtoService: ProdutoService,
@@ -33,7 +34,11 @@ export class GetTipoComponent implements OnInit {
     private alert: AlertasService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    window.scroll(0,0)
+    let idCategorias : number = this.route.snapshot.params['idCategoriaProduto']
+    
+    this.findAllByIdCategoria(idCategorias)
   }
 
   findAllCategorias(){
@@ -50,5 +55,12 @@ export class GetTipoComponent implements OnInit {
         this.listaCategoria = resp
       })
     }
+  }
+
+  findAllByIdCategoria(id: number){
+    this.categoriaService.getByIdCategoria(id).subscribe((resp: Categoria) => {
+      this.categoria = resp
+      this.listaProduto = this.categoria.modelProdutos
+    })
   }
 }

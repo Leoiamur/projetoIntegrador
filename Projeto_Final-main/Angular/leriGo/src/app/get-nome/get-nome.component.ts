@@ -14,6 +14,8 @@ import { ProdutoService } from '../service/produto.service';
 })
 export class GetNomeComponent implements OnInit {
 
+
+  
   idProd!: number
   idCate!: number
   produto: Produto = new Produto()
@@ -24,7 +26,7 @@ export class GetNomeComponent implements OnInit {
   tipoCategoria!: string
   nomeProduto!: string
   
-
+  public paginaAtual = 1;
   carrinho: Produto = new Produto()
   listaCarrinho!: Produto[]
 
@@ -44,7 +46,6 @@ export class GetNomeComponent implements OnInit {
 
   ngOnInit(){
     window.scroll(0,0)
-
     let nome : string = this.route.snapshot.params['nomeProduto']
 
 
@@ -137,9 +138,11 @@ findByNomeProdutos(nome: string) {
   if (nome === "" || nome == undefined){
     this.findAllProdutos()
   } else{
-    this.produtoService.getByNomeProduto(nome).subscribe((resp: Produto[]) => {
-      this.listaProduto = resp
-    })
+      this.produtoService.getByNomeProduto(nome).subscribe((resp: Produto[]) => {
+        this.listaProduto = resp
+      })
+    
+    
   }
 }
 

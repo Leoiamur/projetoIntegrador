@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { refresh } from 'aos';
+import { environment } from 'src/environments/environment.prod';
 import { Categoria } from '../model/categoria';
 import { Produto } from '../model/produto';
 import { AuthService } from '../service/auth.service'
@@ -19,6 +21,7 @@ export class NavbarComponent implements OnInit {
   listaProduto!: Produto[]
   produto: Produto = new Produto()
   nomeProduto!: string
+  env = environment;
   
   constructor(
     private router: Router,
@@ -28,29 +31,23 @@ export class NavbarComponent implements OnInit {
     ) { }
 
   ngOnInit(){
-    
+    this.nome()
   }
-  
 
   nome(){
-
-    let token = localStorage.getItem('token')
-    let Login 
-
-    if(token != null){
-      
-      Login = localStorage.getItem('nome')
-    }else if(token == null){
-      Login = "Logar"
+    let Login = localStorage.getItem('nome')
+    if(Login == null || Login == undefined || Login == ""){
+      return new String("Logar")
+    }else{
+      return new String (Login)
     }
-    return new String (Login)
   }
 
   verificarLogin(){
 
     let Login = localStorage.getItem('nome')
 
-    if(Login == null || Login == "Logar"){
+    if(Login == "Logar" || Login == "" || Login == " " || Login == null || Login == undefined){
       this.router.navigate(['/login'])
     }else{
       this.router.navigate(['/minhaConta'])
@@ -94,6 +91,17 @@ export class NavbarComponent implements OnInit {
   sair(){
     this.router.navigate(['/login'])
     localStorage.clear()
+    environment.id = 0
+    environment.nome = "Logar"
+    environment.email = ""
+    environment.senha = ""
   }
 
+  pesquisar(){
+    if(this.router.url == '/get-nome'){
+      this.router.navigate(['/get-nome', this.nomeProduto])
+    }else{
+      this.router.navigate(['/get-nome', this.nomeProduto])
+    }
+  }
 }

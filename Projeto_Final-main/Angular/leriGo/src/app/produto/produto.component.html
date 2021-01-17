@@ -19,10 +19,6 @@
           <a >★</a>
         </div>
       </header>
-      <article>
-        <h5>Descriçao</h5>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </article>
       <div class="controls">
         <div class="color">
           
@@ -37,7 +33,7 @@
         </div>
       </div>
       <div class="footer">
-        <button type="button" [routerLink]="['/carrinho', produto.idProduto]">
+        <button type="button" (click)="adicionandoCarrinho()">
           <span>Adicione ao carrinho</span>
         </button>
         

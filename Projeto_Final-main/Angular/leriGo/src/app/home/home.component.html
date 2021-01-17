@@ -6,13 +6,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="assets/img/banner1.png" class="d-block w-100" alt="...">
+      <img src="assets/img/teste3.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="assets/img/banner2.png" class="d-block w-100" alt="...">
+      <img src="assets/img/teste2.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="assets/img/banner3.png" class="d-block w-100" alt="...">
+      <img src="assets/img/teste.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -36,7 +36,7 @@
       <img src="./assets/img/bannerVestuario.jpg" class="rounded shadow">
       <div class="info">
         <h1>Vestuario</h1>
-        <p> <a href="#" class="btnCerta"> Filtrar</a></p>
+        <p> <a [routerLink]="['/get-tipo', 1]" class="btnCerta"> Filtrar</a></p>
       </div>
     </div>
 
@@ -45,7 +45,7 @@
       <img src="./assets/img/bannerCalcados.jpg" class="rounded shadow">
       <div class="info">
         <h1>Calçados</h1>
-        <p> <a href="#" class="btnCerta"> Filtrar</a></p>
+        <p> <a [routerLink]="['/get-tipo', 3]" class="btnCerta"> Filtrar</a></p>
       </div>
     </div>
 
@@ -53,7 +53,7 @@
       <img src="./assets/img/bannerAcessorios.jpg" class="rounded shadow">
       <div class="info">
         <h1>Acessórios</h1>
-        <p> <a href="#" class="btnCerta"> Filtrar</a></p>
+        <p> <a [routerLink]="['/get-tipo', 5]" class="btnCerta"> Filtrar</a></p>
       </div>
     </div>
 
@@ -62,7 +62,9 @@
 
   </div>
 
-  
+  <div class="col-md-12 d-flex justify-content-center">
+    <h1 class="mb-10 p-4">Produtos em Destaque</h1>
+  </div>
 
   <div class="row">
 
@@ -79,7 +81,7 @@
                 <!--overlayer---------->
                 <div class="overlay">
                   <!--buy-btn------>
-                  <a href="#" class="buy-btn">Compre Agora</a>
+                  <a href="#" class="buy-btn">Ver +</a>
                 </div>
               </div>
               <!--detail-box--------->
@@ -87,10 +89,14 @@
                 <!--type-------->
                 <div class="type">
                   <a href="#">Blusa Preta</a>
+                  <div>
                   <span>Quantidade:1</span>
+                  <br>
+                  <a href="#" class="price">R$50</a>
+                </div>
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$59,99</a>
+                
 
               </div>
             </div>
@@ -98,7 +104,7 @@
         </ng-template>
         <ng-template carouselSlide>
           <div class="col-md-4">
-            <div class="box" style="width: 12.5rem;">
+            <div class="box mb-3" style="width: 12.5rem;">
               <div class="box-body">
                 <h5 class="card-title"></h5>
               </div>
@@ -107,7 +113,7 @@
                 <!--overlayer---------->
                 <div class="overlay">
                   <!--buy-btn------>
-                  <a href="#" class="buy-btn">Compre Agora</a>
+                  <a href="#" class="buy-btn">Ver +</a>
                 </div>
               </div>
               <!--detail-box--------->
@@ -115,10 +121,17 @@
                 <!--type-------->
                 <div class="type">
                   <a href="#">Jaqueta Preta</a>
-                  <span>Quantidade: 1</span>
+                  <div>
+                    <span>Quantidade: 1</span>
+                    <br>
+                    <a href="#" class="price">R$100</a>
+                  </div>
+                  
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$99,99</a>
+                
+                
+                
 
               </div>
             </div>
@@ -135,7 +148,7 @@
                 <!--overlayer---------->
                 <div class="overlay">
                   <!--buy-btn------>
-                  <a href="#" class="buy-btn">Compre Agora</a>
+                  <a href="#" class="buy-btn">Ver +</a>
                 </div>
               </div>
               <!--detail-box--------->
@@ -143,10 +156,16 @@
                 <!--type-------->
                 <div class="type">
                   <a href="#">Relogio</a>
-                  <span>Quantidade:1</span>
+
+                  <div>
+                    <span>Quantidade:1</span>
+                    <br>
+                    <a href="#" class="price">R$200</a>
+                  </div>
+                  
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$199,99</a>
+                
 
               </div>
             </div>
@@ -163,7 +182,7 @@
                 <!--overlayer---------->
                 <div class="overlay">
                   <!--buy-btn------>
-                  <a href="#" class="buy-btn">Compre Agora</a>
+                  <a href="#" class="buy-btn">Ver +</a>
                 </div>
               </div>
               <!--detail-box--------->
@@ -171,10 +190,15 @@
                 <!--type-------->
                 <div class="type">
                   <a href="#">Tenis Nike</a>
-                  <span>Quantidade:1</span>
+                  <div>
+                    <span>Quantidade:1</span>
+                    <br>
+                    <a href="#" class="price">R$150</a>
+                  </div>
+                  
                 </div>
                 <!--price-------->
-                <a href="#" class="price">R$99,99</a>
+                
 
               </div>
             </div>
@@ -185,11 +209,17 @@
     </div>
   </div>
 
-  <div class="row"  *ngIf='auth.btnSair()'>
-    <div class="col-md-12 d-flex justify-content-center fonte" >
-      <h1 class="fonte" >Produtos</h1>
+  <div class="col-md-12 d-flex justify-content-center">
+    <h1 class="mb-10 p-4">Outros Produtos</h1>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-12 d-flex justify-content-center">
+      <br>
+      <br>
+
     </div>
-    <div class="col-md-3 mb-5 "
+    <div class="col-md-3 mb-5"
       *ngFor="let item of listaProduto | paginate: { itemsPerPage: 8, currentPage: paginaAtual }; let i = index">
       <div class="box" style="width: 14rem;">
         <div class="box-body">
@@ -219,7 +249,7 @@
     </div>
     
   </div>
-  <div class="col d-flex justify-content-end align-items-end mb-5 mt-2" *ngIf='auth.btnSair()'>
+  <div class="col d-flex justify-content-end align-items-end mb-5 mt-2">
     <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
     </pagination-controls>
 

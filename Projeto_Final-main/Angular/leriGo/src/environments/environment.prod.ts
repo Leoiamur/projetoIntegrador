@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
-  listaCarrinho: [] = [],
-  qtdItens: 0
+  id: 0,
+  nome: "Logar",
+  email: "",
+  senha: "",
 };

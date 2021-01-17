@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { Categoria } from '../model/categoria';
 import { Produto } from '../model/produto';
+import { AlertasService } from '../service/alertas.service';
 import { CategoriaService } from '../service/categoria.service';
 import { ProdutoService } from '../service/produto.service';
 
@@ -25,7 +26,8 @@ export class ProdutoComponent implements OnInit {
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public alert: AlertasService
   ) {}
 
   ngOnInit(){
@@ -42,6 +44,11 @@ export class ProdutoComponent implements OnInit {
       this.valorAntigo = this.produto.preco + 10
       
       })
+  }
+
+  adicionandoCarrinho(){
+    this.alert.showAlertSuccess("Produto adicionado ao carrinho!");
+    this.router.navigate(['/carrinho'])
   }
   
 }

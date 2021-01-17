@@ -20,7 +20,7 @@ export class CategoriaService {
   }
 
   getByIdCategoria(idCategoria: number) : Observable<Categoria>{
-    return this.http.get<Categoria>(`http://localhost:8080/categoria/${idCategoria}`, this.token)
+    return this.http.get<Categoria>(`http://localhost:8080/categoria/${idCategoria}`)
   }
 
   postCategoria(categoria: Categoria) : Observable<Categoria>{

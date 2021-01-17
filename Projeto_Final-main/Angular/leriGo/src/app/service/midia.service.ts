@@ -9,6 +9,8 @@ export class MidiaService {
 
   constructor(private http: HttpClient) { }
 
+  
+
   uploadPhoto( file: File) : Observable<any>{
     let data: FormData = new FormData()
     data.append('file', file)
